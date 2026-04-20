@@ -1,3 +1,7 @@
+"""
+Modul description
+"""
+
 import math
 import unittest
 from parameterized import parameterized
@@ -7,12 +11,21 @@ from math import inf
 
 
 class TestCalculator(unittest.TestCase):
+    """
+    Модуль для тестирования функции логарифма
+    """
     # здесь запускаем один экз app на все тесты
     def setUp(self) -> None:
+        """
+        Описание функции setUp
+        """
         self.calc = Calculator()
 
     # здесь все зачищаем после отработки тестов
     def tearDown(self) -> None:
+        """
+        Описание функции tearDown
+        """
         ...
 
     @parameterized.expand(
@@ -27,6 +40,9 @@ class TestCalculator(unittest.TestCase):
         ]
     )
     def test_sum(self, name, a, b, expected_result):
+        """
+        Описание функции test_sum
+        """
         # 2. act
         # получаем факт. результат выполнения функции
         actual_result = self.calc.sum(a, b)
@@ -43,6 +59,9 @@ class TestCalculator(unittest.TestCase):
 
     ])
     def test_sum_invalid_values(self, name, a, b, expected_result):
+        """
+        Описание функции test_sum_invalid_values
+        """
         with self.assertRaises(expected_result):
             self.calc.sum(a, b)
 
@@ -52,6 +71,9 @@ class TestCalculator(unittest.TestCase):
         ("list_single", [1], 1)
     ])
     def test_sum_list(self, name, a, expected_result):
+        """
+        Описание функции test_sum_list
+        """
         # 2. act
         actual_result = self.calc.sum(*a)
         # 3. assert
@@ -66,26 +88,35 @@ class TestCalculator(unittest.TestCase):
         ("set_single", {1}, 1),
     ])
     def test_sum_tuple(self, name, a, expected_result):
+        """
+        Описание функции test_sum_tuple
+        """
         # 2. act
         actual_result = self.calc.sum(*a)
         # 3. assert
         self.assertEqual(actual_result, expected_result)
 
     def test_multiply(self):
+        """
+        Описание функции test_multiply
+        """
         a = 5
        # b = 0 # OK
         b = 0.000000005 #failed
 
         actual_result = self.calc.multiply(a, b)
         expected_result = 0 # OK, = 1 # failed
-        # self.assertEqual(actual_result, expected_result) # для b = 0.000000005
-                                # тест будет failed, т.к. резалт будет не ровный ноль, нужен assertAlmostEqual
+        # self.assertEqual(actual_result, expected_result) # для b = 0.00000000
+        # тест будет failed, т.к. резалт будет не ровный ноль, нужен assertAlmostEqual
 
         self.assertAlmostEqual(actual_result, expected_result) # OK
         #здесь по дефолту сравниваются числа до 7 знака, places может изменить это
         #self.assertAlmostEqual(actual_result, expected_result, places=8) # так упадет
 
     def test_divide(self):
+        """
+        Описание функции test_divide
+        """
         a = 5
         b = 0
 
@@ -95,6 +126,9 @@ class TestCalculator(unittest.TestCase):
             self.calc.divide(a, b)
 
     def test_divide_inf(self):
+        """
+        Описание функции test_divide_inf
+        """
         a = inf
         b = inf
 

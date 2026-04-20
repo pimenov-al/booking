@@ -6,6 +6,7 @@ from typing import Union
 import math
 from app.error import InvalidInputException
 
+# pylint: disable=C0304, C0103, R1705, W2301
 numeric = Union[int, float]
 
 

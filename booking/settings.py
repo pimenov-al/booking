@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "api",
+    "rest_framework.authtoken", # не было до фейла с запуском Api сервера
 ]
 
 MIDDLEWARE = [
@@ -62,6 +63,7 @@ TEMPLATES = [
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
+                "django.template.context_processors.debug", # не было до фейла с запуском Api сервера
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
@@ -120,4 +122,17 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-AUTH_USER_MODEL = 'api.ApiUser'
+
+
+AUTH_USER_MODEL: str = 'api.ApiUser'
+
+# AUTH_USER_MODEL = 'api.ApiUser' # так было до предложенного исправления
+
+# добавил из документации
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
+    ]
+}

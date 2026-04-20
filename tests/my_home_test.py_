@@ -1,0 +1,99 @@
+from gettext import install
+import unittest
+import math
+import numpy
+from parameterized import parameterized
+from app.error import InvalidInputException
+from app.main import Calculator
+
+# ДОНОР
+
+# Какие нужны сценарии: ------------------------------------------
+# TODO: + Тест на обычное правильное использование функции.
+# TODO: + Тест на неправильные типы входных данных (например, если вместо чисел передается строка).
+# TODO: + Тест на то, что функ-я бросает ошибку InvalidInputException, если вводные данные не входят в ОДЗ функции.
+
+# ЭТО НОВЫЙ КЛАСС ДЛЯ ТЕСТИРОВАНИЯ ф. log()-------------------------
+
+class HomeTestCalculator(unittest.TestCase):
+
+    # здесь запускаем один экз app на все тесты
+    def setUp(self) -> None:
+        self.calc = Calculator()
+
+    # здесь все зачищаем после отработки тестов
+    def tearDown(self) -> None:
+        ...
+
+    # ЭТО НАБОР ТЕСТОВ И ПАРАМЕТРОВ К НИМ ------------------------------------------------
+
+    # TODO: Тест на обычное правильное использование функции
+    @parameterized.expand(
+        [
+            ("log3_81", 81, 3, 4),
+            ("log2_8", 8, 2, 3),
+            ("log2_16", 16, 2, 4),
+            ("log2_2", 2, 2, 1),
+            ("log2_1/2", 0.5, 2, -1),
+            # ("log1_1", 1, 1, None),  # ZeroDivisionError, нужно поймать nan
+            ("log5_1", 1, 5, 0)
+        ]
+    )
+    def test_log_general_use(self, name, a, b, expected_result):
+        actual_result = self.calc.log(a, b)
+        self.assertEqual(actual_result, expected_result)
+
+    @parameterized.expand(
+    # log(x*y) = log(x) + log(y)
+        [
+            ("log2_(16*4)", 16*4, 2, 6)
+        ]
+    )
+    def test_log_multiply_property(self, name, a, b, expected_result):
+        actual_result = self.calc.log(a, b)
+        self.assertEqual(actual_result, expected_result)
+
+    @parameterized.expand(
+    # log(x/y) = log(x) - log(y)
+        [
+            ("log2_(16/4)", 16/4, 2, 2)
+        ]
+    )
+    def test_log_divide_property(self, name, a, b, expected_result):
+        actual_result = self.calc.log(a, b)
+        self.assertEqual(actual_result, expected_result)
+
+    # TODO: Тест на неправильные типы входных данных (например, если вместо чисел передается строка).
+    @parameterized.expand([
+        ("a-strings", 'aaa', 3, TypeError),
+        ("base-strings", 81, 'aaa', TypeError),
+        ("a,base-strings", 'aaa', 'aaa', TypeError),
+        ("a_None", None, 3, TypeError),
+        ("base_None", 81, None, TypeError),
+        ("a,base_None", None, None, TypeError)
+    ])
+    def test_log_invalid_values(self, name, a, b, expected_result):
+        with self.assertRaises(expected_result):
+            self.calc.log(a, b)
+
+    # TODO: Тест на то, что функ-я бросает ошибку InvalidInputException,
+    #  если вводные данные не входят в ОДЗ функции.
+    # Область допустимых значений, domain_of_definition, dod
+    @parameterized.expand(
+        [
+            ("log-3_81", 81, -3, InvalidInputException),
+            ("log3_-81", -81, 3, InvalidInputException),
+            ("log0_9", 9, 0, InvalidInputException),
+            ("log2_0", 0, 2, InvalidInputException), #inf должен быть
+            ("log1_1", 1, 1, ZeroDivisionError), # ZeroDivisionError
+        ]
+    )
+    def test_log_domain_of_definition(self, name, a, b, expected_result):
+        with self.assertRaises(expected_result):
+            self.calc.log(a, b)
+
+
+# ЭТО НАШ РАНЕР'------------------------------------------------
+
+if __name__ == "__main__":
+    unittest.main() # здесь unittest применяем к файлу main, где код калькулятра

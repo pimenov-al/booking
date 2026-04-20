@@ -2,8 +2,9 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+
 from django.core.management import execute_from_command_line
-# вставлено вместо блока try для устранения ошибки.
+# импорт вставлен вместо блока try для устранения ошибки.
 # C0415 import outside toplevel.
 # надо пройти pylint при cicd в github.
 

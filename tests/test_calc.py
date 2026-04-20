@@ -4,9 +4,10 @@ Modul description
 
 import math
 import unittest
+from math import inf
 from parameterized import parameterized
 from app.main import Calculator
-from math import inf
+
 # список импортов в видео воркшопа см на время 33:33
 
 
@@ -59,7 +60,8 @@ class TestCalculator(unittest.TestCase):
         ("None_None", None, None, TypeError)
 
     ])
-    def test_sum_invalid_values(self, name, a, b, expected_result):
+    #def test_sum_invalid_values(self, name, a, b, expected_result):
+    def test_sum_invalid_values(self, a, b, expected_result):
         """
         Описание функции test_sum_invalid_values
         """

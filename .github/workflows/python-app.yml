@@ -5,9 +5,11 @@ name: Python application
 
 on:
   push:
-    branches: [ "main" ]
+    #branches: [ "main" ]
+    branches: [ "pimenov-al-patch-3" ]
   pull_request:
-    branches: [ "main" ]
+    #branches: [ "main" ]
+    branches: [ "pimenov-al-patch-3" ]
 
 permissions:
   contents: read

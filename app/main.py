@@ -59,13 +59,3 @@ class Calculator:
 
 
 calc = Calculator()
-
-# проверка что все класс работает - OK
-# print('проверка 6 + 2 = ', calc.sum(6, 2))       #8
-# print('проверка 6 : 2 = ', calc.divide(6, 2))    #3.0
-# print('проверка 6 * 2 = ', calc.multiply(6, 2))  #12
-# print('проверка log2-8 = ', calc.log(8, 2))    #3
-
-#d = calc.log('a', 0)
-#print(d) # здесь будет ошибка
-

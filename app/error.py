@@ -1,4 +1,11 @@
+"""
+error.py взят из урока про тестирование
+"""
+
 class InvalidInputException(Exception):
+    """
+    class for InvalidInputException
+    """
     def __init__(self, f: callable, *args):
         super().__init__()
         self.f = f

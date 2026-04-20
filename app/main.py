@@ -1,3 +1,7 @@
+"""
+Modul description
+"""
+
 from typing import Union
 import math
 from app.error import InvalidInputException
@@ -6,9 +10,14 @@ numeric = Union[int, float]
 
 
 class Calculator:
-
+    """
+    class Calculator description
+    """
     @staticmethod
     def sum(*args):
+        """
+        Function "sum" description
+        """
         for arg in args:
             if not isinstance(arg, numeric):
                 raise TypeError
@@ -16,18 +25,29 @@ class Calculator:
 
     @staticmethod
     def subtract(a: numeric, b: numeric) -> numeric:
+        """
+        Function "subtract" description
+        """
         return a - b
 
     @staticmethod
     def multiply(a: numeric, b: numeric) -> numeric:
+        """
+        Function "multiply" description
+        """
         return a * b
 
     @staticmethod
     def divide(a: numeric, b: numeric) -> numeric:
+        """
+        Function "divide" description
+        """
         return a / b
 
     def log(self, a: numeric, base: numeric) -> numeric:
-        # TODO: cover this method with unit-tests
+        """
+        Function "log" description
+        """
         if not (isinstance(a, numeric) and isinstance(base, numeric)):
             raise TypeError
 

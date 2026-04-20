@@ -26,7 +26,3 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py')
-        pylint: disable=C0304
-        pylint: disable=C0103
-        pylint: disable=R1705
-        pylint: disable=W2301

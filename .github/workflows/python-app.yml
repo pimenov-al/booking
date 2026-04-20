@@ -34,7 +34,7 @@ jobs:
         pip install -r requirements.txt
     - name: Test with Unittest
       run: |
-        unittest
+        -m unittest discover
 
 
 #    - name: Lint with flake8

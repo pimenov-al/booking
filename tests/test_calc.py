@@ -27,7 +27,8 @@ class TestCalculator(unittest.TestCase):
         """
         Описание функции tearDown
         """
-        ...
+        #...
+
 
     @parameterized.expand(
         # 1. arrange

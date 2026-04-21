@@ -6,10 +6,10 @@ name: Python application
 on:
   push:
     #branches: [ "main" ]
-    branches: [ "pimenov-al-patch-3" ]
+    branches: [ "pimenov-al-patch-1" ]
   pull_request:
     #branches: [ "main" ]
-    branches: [ "pimenov-al-patch-3" ]
+    branches: [ "pimenov-al-patch-1" ]
 
 permissions:
   contents: read
@@ -34,8 +34,8 @@ jobs:
         pip install -r requirements.txt
     - name: Test with Unittest
       #run: python test_calc.py
-      #run: python -m unittest discover
-      run: python -m unittest discover -s tests
+      run: python -m unittest discover
+      #run: python -m unittest discover -s tests
       
 
 

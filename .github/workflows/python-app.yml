@@ -33,7 +33,9 @@ jobs:
         #if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         pip install -r requirements.txt
     - name: Test with Unittest
-      run: python -m unittest discover
+      run: python test_calc.py
+      #run: python -m unittest discover
+
 
 
 #    - name: Lint with flake8

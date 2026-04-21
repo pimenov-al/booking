@@ -41,7 +41,7 @@ class TestCalculator(unittest.TestCase):
             ("negative", -2.5, 3.0, 0.5)
         ]
     )
-
+    # pylint: disable=W0613
     def test_sum(self, name, a, b, expected_result):
     #def test_sum(self, a, b, expected_result):
         """
@@ -62,7 +62,7 @@ class TestCalculator(unittest.TestCase):
         ("None_None", None, None, TypeError)
 
     ])
-
+    # pylint: disable=W0613
     def test_sum_invalid_values(self, name, a, b, expected_result):
     #def test_sum_invalid_values(self, a, b, expected_result):
         """
@@ -76,7 +76,7 @@ class TestCalculator(unittest.TestCase):
         ("list_empty", [], 0),
         ("list_single", [1], 1)
     ])
-
+    # pylint: disable=W0613
     def test_sum_list(self, name, a, expected_result):
     #def test_sum_list(self, a, expected_result):
         """
@@ -95,7 +95,7 @@ class TestCalculator(unittest.TestCase):
         ("set_empty", {}, 0),
         ("set_single", {1}, 1),
     ])
-
+    # pylint: disable=W0613
     def test_sum_tuple(self, name, a, expected_result):
     #def test_sum_tuple(self, a, expected_result):
         """
